@@ -37,9 +37,11 @@ The model family depends on the benefit year: **V07** covers BY2021 and forward;
 
 | Command | What it does |
 |---|---|
-| `/hhs-hcc-score` | Guided intake → runs `score_enrollee.py` → explains the output clinically |
-| `/hhs-hcc-lookup` | Look up any coefficient by variable name, year, and metal level |
-| `/hhs-hcc-transfer` | Compute T(i) or find the Platinum inflection point; auto-populates statewide inputs by state+year |
+| `/hhs-hcc-risk-adjustment:score` | Guided intake → runs `score_enrollee.py` → explains the output clinically |
+| `/hhs-hcc-risk-adjustment:lookup` | Look up any coefficient by variable name, year, and metal level |
+| `/hhs-hcc-risk-adjustment:transfer` | Compute T(i) or find the Platinum inflection point; auto-populates statewide inputs by state+year |
+
+Commands are namespaced under the plugin name to avoid conflicts with other plugins.
 
 Or just ask Claude a question directly — the plugin activates automatically based on context.
 
@@ -192,31 +194,19 @@ CMS publishes updated model specifications annually in the **Notice of Benefit a
 npx hhs-hcc-risk-adjustment
 ```
 
-This copies the plugin to `~/.claude/plugins/hhs-hcc-risk-adjustment/` and adds it to your global `~/.claude/settings.json` automatically. Restart Claude Code afterward.
+This copies the plugin to `~/.claude/skills/hhs-hcc-risk-adjustment/`. Claude Code auto-discovers plugins in that directory — no settings.json changes needed. Run `/reload-plugins` or restart Claude Code to activate.
 
-Safe to re-run — it won't add a duplicate entry.
+Safe to re-run — it overwrites files in place without creating duplicates.
 
 ### Option 2 — manual
 
-Clone the repo and add the plugin path to your Claude Code settings.
+Clone the repo and copy (or symlink) the `hhs-hcc-risk-adjustment/` directory into `~/.claude/skills/`:
 
-**User-level** (`~/.claude/settings.json`):
-```json
-{
-  "plugins": [
-    { "path": "/path/to/skills/hhs-hcc-risk-adjustment" }
-  ]
-}
+```bash
+cp -r hhs-hcc-risk-adjustment ~/.claude/skills/
 ```
 
-**Project-level** (`.claude/settings.json` in your project):
-```json
-{
-  "plugins": [
-    { "path": "/path/to/skills/hhs-hcc-risk-adjustment" }
-  ]
-}
-```
+Then run `/reload-plugins` in Claude Code.
 
 ---
 
