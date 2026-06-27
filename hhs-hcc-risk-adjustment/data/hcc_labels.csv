@@ -1,0 +1,211 @@
+column_name,hcc_number,label,clinical_category
+G01,G01,Diabetes,Diabetes
+G02b,G02b,Mucopolysaccharidosis; Lipidoses and Glycogenosis,Metabolic/Endocrine
+G02d,G02d,Muscular Dystrophy Grouper - Pediatric,Metabolic/Endocrine
+G03,G03,Childhood Psychiatric Disorder Grouper - Pediatric,Behavioral Health
+G04,G04,"Osteogenesis Imperfecta and Other Osteodystrophies; Congenital/Developmental Skeletal and Connective Tissue Disorders",Musculoskeletal
+G06A,G06A,"Myelodysplastic Syndromes and Myelofibrosis; Aplastic Anemia; Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",Hematologic/Immune
+G07A,G07A,"Sickle Cell Anemia (Hb-SS); Thalassemia Major",Hematologic/Immune
+G08,G08,"Combined and Other Severe Immunodeficiencies; Disorders of the Immune Mechanism",Hematologic/Immune
+G09A,G09A,"Drug Psychosis; Drug Dependence",Behavioral Health
+G09C,G09C,"Alcohol Use with Psychotic Complications; Alcohol Use Disorder, Moderate/Severe; Drug Use Disorder, Mild",Behavioral Health
+G10,G10,"Traumatic Complete Lesion Cervical Spinal Cord; Quadriplegia",Neurological
+G11,G11,"Traumatic Complete Lesion Dorsal Spinal Cord; Paraplegia",Neurological
+G12,G12,"Muscular Dystrophy; Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",Neurological
+G13,G13,"Respiratory Arrest; Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",Respiratory
+G14,G14,"Heart Assistive Device/Artificial Heart; Heart Transplant",Cardiovascular
+G15A,G15A,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis; Severe Asthma; Asthma, Except Severe",Respiratory
+G16,G16,"Chronic Kidney Disease, Stage 5; Chronic Kidney Disease, Severe (Stage 4)",Renal
+G17A,G17A,"Miscarriage with Complications; Miscarriage with No or Minor Complications",Pregnancy
+G18A,G18A,"Completed Pregnancy With Major Complications; Completed Pregnancy With Complications",Pregnancy
+G21,G21,"Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders; Major Congenital Heart/Circulatory Disorders; Atrial and Ventricular Septal Defects",Cardiovascular
+G24,G24,Pancreas/Kidney Transplant Status,Transplant
+HHS_HCC001,1,HIV/AIDS,HIV/AIDS
+HHS_HCC002,2,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",Infections
+HHS_HCC003,3,"Central Nervous System Infections, Except Viral Meningitis",Infections
+HHS_HCC004,4,Viral or Unspecified Meningitis,Infections
+HHS_HCC006,6,Opportunistic Infections,Infections
+HHS_HCC008,8,Metastatic Cancer,Oncology
+HHS_HCC009,9,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",Oncology
+HHS_HCC010,10,Non-Hodgkin Lymphomas and Other Cancers and Tumors,Oncology
+HHS_HCC011,11,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",Oncology
+HHS_HCC012,12,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",Oncology
+HHS_HCC013,13,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",Oncology
+HHS_HCC018,18,Pancreas Transplant Status/Complications,Transplant
+HHS_HCC019,19,Diabetes with Acute Complications,Diabetes
+HHS_HCC020,20,Diabetes with Chronic Complications,Diabetes
+HHS_HCC021,21,Diabetes without Complication,Diabetes
+HHS_HCC022,22,"Type 1 Diabetes Mellitus, add-on to Diabetes HCCs 19-21",Diabetes
+HHS_HCC023,23,Protein-Calorie Malnutrition,Metabolic/Endocrine
+HHS_HCC026,26,Mucopolysaccharidosis,Metabolic/Endocrine
+HHS_HCC027,27,Lipidoses and Glycogenosis,Metabolic/Endocrine
+HHS_HCC028,28,"Congenital Metabolic Disorders, Not Elsewhere Classified",Metabolic/Endocrine
+HHS_HCC029,29,"Amyloidosis, Porphyria, and Other Metabolic Disorders",Metabolic/Endocrine
+HHS_HCC030,30,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",Metabolic/Endocrine
+HHS_HCC034,34,Liver Transplant Status/Complications,Liver/Hepatic
+HHS_HCC035_1,35_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",Liver/Hepatic
+HHS_HCC035_2,35_2,Chronic Liver Failure/End-Stage Liver Disorders,Liver/Hepatic
+HHS_HCC036,36,Cirrhosis of Liver,Liver/Hepatic
+HHS_HCC037_1,37_1,Chronic Viral Hepatitis C,Liver/Hepatic
+HHS_HCC037_2,37_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",Liver/Hepatic
+HHS_HCC038,38,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",Liver/Hepatic
+HHS_HCC041,41,Intestine Transplant Status/Complications,Gastrointestinal
+HHS_HCC042,42,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,Gastrointestinal
+HHS_HCC045,45,Intestinal Obstruction,Gastrointestinal
+HHS_HCC046,46,Chronic Pancreatitis,Gastrointestinal
+HHS_HCC047,47,Acute Pancreatitis,Gastrointestinal
+HHS_HCC048,48,Inflammatory Bowel Disease,Gastrointestinal
+HHS_HCC054,54,Necrotizing Fasciitis,Musculoskeletal
+HHS_HCC055,55,Bone/Joint/Muscle Infections/Necrosis,Musculoskeletal
+HHS_HCC056,56,Rheumatoid Arthritis and Specified Autoimmune Disorders,Musculoskeletal
+HHS_HCC057,57,Systemic Lupus Erythematosus and Other Autoimmune Disorders,Musculoskeletal
+HHS_HCC061,61,Osteogenesis Imperfecta and Other Osteodystrophies,Musculoskeletal
+HHS_HCC062,62,Congenital/Developmental Skeletal and Connective Tissue Disorders,Musculoskeletal
+HHS_HCC063,63,Cleft Lip/Cleft Palate,Musculoskeletal
+HHS_HCC064,64,"Major Congenital Anomalies of Diaphragm, Abdominal Wall, and Esophagus, Age < 2",Developmental/Genetic
+HHS_HCC066,66,Hemophilia,Hematologic/Immune
+HHS_HCC067,67,Myelodysplastic Syndromes and Myelofibrosis,Hematologic/Immune
+HHS_HCC068,68,Aplastic Anemia,Hematologic/Immune
+HHS_HCC069,69,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",Hematologic/Immune
+HHS_HCC070,70,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,Hematologic/Immune
+HHS_HCC071,71,"Sickle-Cell Disorders, Except Sickle-Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",Hematologic/Immune
+HHS_HCC073,73,Combined and Other Severe Immunodeficiencies,Hematologic/Immune
+HHS_HCC074,74,Disorders of the Immune Mechanism,Hematologic/Immune
+HHS_HCC075,75,Coagulation Defects and Other Specified Hematological Disorders,Hematologic/Immune
+HHS_HCC081,81,Drug Use with Psychotic Complications,Behavioral Health
+HHS_HCC082,82,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",Behavioral Health
+HHS_HCC083,83,Alcohol Use with Psychotic Complications,Behavioral Health
+HHS_HCC084,84,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",Behavioral Health
+HHS_HCC085,85,"Drug Use Disorder, Mild, Uncomplicated, Except Cannabis",Behavioral Health
+HHS_HCC087_1,87_1,Schizophrenia,Behavioral Health
+HHS_HCC087_2,87_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",Behavioral Health
+HHS_HCC088,88,"Major Depressive Disorder, Severe, and Bipolar Disorders",Behavioral Health
+HHS_HCC090,90,Personality Disorders,Behavioral Health
+HHS_HCC094,94,Anorexia/Bulimia Nervosa,Behavioral Health
+HHS_HCC096,96,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",Developmental/Genetic
+HHS_HCC097,97,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",Developmental/Genetic
+HHS_HCC102,102,Autistic Disorder,Developmental/Genetic
+HHS_HCC103,103,"Pervasive Developmental Disorders, Except Autistic Disorder",Developmental/Genetic
+HHS_HCC106,106,Traumatic Complete Lesion Cervical Spinal Cord,Neurological
+HHS_HCC107,107,Quadriplegia,Neurological
+HHS_HCC108,108,Traumatic Complete Lesion Dorsal Spinal Cord,Neurological
+HHS_HCC109,109,Paraplegia,Neurological
+HHS_HCC110,110,Spinal Cord Disorders/Injuries,Neurological
+HHS_HCC111,111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,Neurological
+HHS_HCC112,112,Quadriplegic Cerebral Palsy,Neurological
+HHS_HCC113,113,"Cerebral Palsy, Except Quadriplegic",Neurological
+HHS_HCC114,114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,Neurological
+HHS_HCC115,115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,Neurological
+HHS_HCC117,117,Muscular Dystrophy,Neurological
+HHS_HCC118,118,Multiple Sclerosis,Neurological
+HHS_HCC119,119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",Neurological
+HHS_HCC120,120,Seizure Disorders and Convulsions,Neurological
+HHS_HCC121,121,Hydrocephalus,Neurological
+HHS_HCC122,122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic Brain Compression/Anoxic Damage",Neurological
+HHS_HCC123,123,Narcolepsy and Cataplexy,Neurological
+HHS_HCC125,125,Respirator Dependence/Tracheostomy Status,Respiratory
+HHS_HCC126,126,Respiratory Arrest,Respiratory
+HHS_HCC127,127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",Respiratory
+HHS_HCC128,128,Heart Assistive Device/Artificial Heart,Cardiovascular
+HHS_HCC129,129,Heart Transplant Status/Complications,Cardiovascular
+HHS_HCC130,130,Heart Failure,Cardiovascular
+HHS_HCC131,131,Acute Myocardial Infarction,Cardiovascular
+HHS_HCC132,132,Unstable Angina and Other Acute Ischemic Heart Disease,Cardiovascular
+HHS_HCC135,135,"Heart Infection/Inflammation, Except Rheumatic",Cardiovascular
+HHS_HCC137,137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,Cardiovascular
+HHS_HCC138,138,Major Congenital Heart/Circulatory Disorders,Cardiovascular
+HHS_HCC139,139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",Cardiovascular
+HHS_HCC142,142,Specified Heart Arrhythmias,Cardiovascular
+HHS_HCC145,145,Intracranial Hemorrhage,Neurological
+HHS_HCC146,146,Ischemic or Unspecified Stroke,Neurological
+HHS_HCC149,149,Cerebral Aneurysm and Arteriovenous Malformation,Neurological
+HHS_HCC150,150,Hemiplegia/Hemiparesis,Neurological
+HHS_HCC151,151,"Monoplegia, Other Paralytic Syndromes",Neurological
+HHS_HCC153,153,Atherosclerosis of the Extremities with Ulceration or Gangrene,Cardiovascular
+HHS_HCC154,154,Vascular Disease with Complications,Cardiovascular
+HHS_HCC156,156,Pulmonary Embolism and Deep Vein Thrombosis,Cardiovascular
+HHS_HCC158,158,Lung Transplant Status/Complications,Respiratory
+HHS_HCC159,159,Cystic Fibrosis,Respiratory
+HHS_HCC160,160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",Respiratory
+HHS_HCC161_1,161_1,Severe Asthma,Respiratory
+HHS_HCC161_2,161_2,"Asthma, Except Severe",Respiratory
+HHS_HCC162,162,Fibrosis of Lung and Other Lung Disorders,Respiratory
+HHS_HCC163,163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,Respiratory
+HHS_HCC174,174,Exudative Macular Degeneration,Eye
+HHS_HCC183,183,Kidney Transplant Status/Complications,Renal
+HHS_HCC184,184,End Stage Renal Disease,Renal
+HHS_HCC187,187,"Chronic Kidney Disease, Stage 5",Renal
+HHS_HCC188,188,"Chronic Kidney Disease, Severe (Stage 4)",Renal
+HHS_HCC203,203,Ectopic and Molar Pregnancy,Pregnancy
+HHS_HCC204,204,Miscarriage with Complications,Pregnancy
+HHS_HCC205,205,Miscarriage with No or Minor Complications,Pregnancy
+HHS_HCC207,207,Pregnancy with Delivery with Major Complications,Pregnancy
+HHS_HCC208,208,Pregnancy with Delivery with Complications,Pregnancy
+HHS_HCC209,209,Pregnancy with Delivery with No or Minor Complications,Pregnancy
+HHS_HCC210,210,(Ongoing) Pregnancy without Delivery with Major Complications,Pregnancy
+HHS_HCC211,211,(Ongoing) Pregnancy without Delivery with Complications,Pregnancy
+HHS_HCC212,212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,Pregnancy
+HHS_HCC217,217,Chronic Ulcer of Skin Except Pressure,Skin/Burns/Trauma
+HHS_HCC218,218,Extensive Third Degree Burns,Skin/Burns/Trauma
+HHS_HCC219,219,Major Skin Burn or Condition,Skin/Burns/Trauma
+HHS_HCC223,223,Severe Head Injury,Skin/Burns/Trauma
+HHS_HCC226,226,Hip and Pelvic Fractures,Skin/Burns/Trauma
+HHS_HCC227,227,"Pathological Fractures, Except of Vertebrae, Hip, or Humerus",Skin/Burns/Trauma
+HHS_HCC228,228,Vertebral Fractures without Spinal Cord Injury,Skin/Burns/Trauma
+HHS_HCC234,234,Traumatic Amputations and Amputation Complications,Skin/Burns/Trauma
+HHS_HCC242,242,"Extremely Immature Newborns, Birthweight < 500 Grams",Neonatal
+HHS_HCC243,243,"Extremely Immature Newborns, Including Birthweight 500-749 Grams",Neonatal
+HHS_HCC244,244,"Extremely Immature Newborns, Including Birthweight 750-999 Grams",Neonatal
+HHS_HCC245,245,"Premature Newborns, Including Birthweight 1000-1499 Grams",Neonatal
+HHS_HCC246,246,"Premature Newborns, Including Birthweight 1500-1999 Grams",Neonatal
+HHS_HCC247,247,"Premature Newborns, Including Birthweight 2000-2499 Grams",Neonatal
+HHS_HCC248,248,"Other Premature, Low Birthweight, Malnourished, or Multiple Birth Newborns",Neonatal
+HHS_HCC249,249,"Term or Post-Term Singleton Newborn, Normal or High Birthweight",Neonatal
+HHS_HCC251,251,Stem Cell Including Bone Marrow Transplant Status/Complications,Transplant
+HHS_HCC253,253,Artificial Openings for Feeding or Elimination,Gastrointestinal
+HHS_HCC254,254,"Amputation Status, Upper Limb or Lower Limb",Skin/Burns/Trauma
+INT_GROUP_H,INTH,Severe + High-Cost Condition Interaction Group,Model Adjustments
+RXC_01,RXC01,Anti-HIV Agents,HIV/AIDS
+RXC_01_x_HCC001,RXC01X,Anti-HIV Agents + HIV/AIDS,HIV/AIDS
+RXC_02,RXC02,Anti-Hepatitis C (HCV) Agents,Liver/Hepatic
+RXC_02_x_HCC037_1_036_035_2_035_1_034,RXC02X,Anti-HCV Agents + Liver Transplant/End-Stage Liver/Cirrhosis/Chronic Viral Hepatitis,Liver/Hepatic
+RXC_03,RXC03,Antiarrhythmics,Cardiovascular
+RXC_03_x_HCC142,RXC03X,Antiarrhythmics + Specified Heart Arrhythmias,Cardiovascular
+RXC_04,RXC04,Phosphate Binders,Renal
+RXC_04_x_HCC184_183_187_188,RXC04X,Phosphate Binders + Kidney Transplant/ESRD/CKD Stage 4-5,Renal
+RXC_05,RXC05,Inflammatory Bowel Disease Agents,Gastrointestinal
+RXC_05_x_HCC048_041,RXC05X,IBD Agents + Intestine Transplant/IBD,Gastrointestinal
+RXC_06,RXC06,Insulin,Diabetes
+RXC_06_x_HCC018_019_020_021,RXC06X,Insulin + Pancreas Transplant/Diabetes,Diabetes
+RXC_07,RXC07,Anti-Diabetic Agents Except Insulin and Metformin Only,Diabetes
+RXC_07_x_HCC018_019_020_021,RXC07X,Anti-Diabetic Agents + Pancreas Transplant/Diabetes,Diabetes
+RXC_08,RXC08,Multiple Sclerosis Agents,Neurological
+RXC_08_x_HCC118,RXC08X,MS Agents + Multiple Sclerosis,Neurological
+RXC_09,RXC09,Immune Suppressants and Immunomodulators,Musculoskeletal
+RXC_09_x_HCC048_041,RXC09X3,Immune Suppressants + Intestine Transplant/IBD,Gastrointestinal
+RXC_09_x_HCC056,RXC09X1,Immune Suppressants + RA/Autoimmune,Musculoskeletal
+RXC_09_x_HCC056_057_and_048_041,RXC09T,Immune Suppressants + (RA or SLE) and (Intestine Transplant or IBD),Musculoskeletal
+RXC_09_x_HCC057,RXC09X2,Immune Suppressants + SLE/Autoimmune,Musculoskeletal
+RXC_10,RXC10,Cystic Fibrosis Agents,Respiratory
+RXC_10_x_HCC159_158,RXC10X,CF Agents + Lung Transplant/Cystic Fibrosis,Respiratory
+RXC_11,RXC11,Ammonia Detoxicants,Liver/Hepatic
+RXC_11_x_HCC034_035_036,RXC11X,Ammonia Detoxicants + Liver Transplant/End-Stage Liver/Cirrhosis,Liver/Hepatic
+RXC_12,RXC12,Diuretics Loop and Select Potassium-sparing,Cardiovascular
+RXC_12_x_HCC128_129_130,RXC12X,Diuretics + Heart Assistive Device/Heart Transplant/Heart Failure,Cardiovascular
+SEVERE_V3,SEVE,Severe Condition Indicator (adult pre-2023 severity model),Model Adjustments
+SEVERE_HCC_COUNT1,SEV1,Severe Illness 1 Payment HCC,
+SEVERE_HCC_COUNT2,SEV2,Severe Illness 2 Payment HCCs,
+SEVERE_HCC_COUNT3,SEV3,Severe Illness 3 Payment HCCs,
+SEVERE_HCC_COUNT4,SEV4,Severe Illness 4 Payment HCCs,
+SEVERE_HCC_COUNT5,SEV5,Severe Illness 5 Payment HCCs,
+SEVERE_HCC_COUNT6_7,SEV6,Severe Illness 6 Payment HCCs,
+SEVERE_HCC_COUNT7,SEV7,Severe Illness 7 Payment HCCs,
+SEVERE_HCC_COUNT8PLUS,SEV8,Severe Illness 8 Payment HCCs,
+SEVERE_HCC_COUNT9,SEV9,Severe Illness 9 Payment HCCs,
+SEVERE_HCC_COUNT10PLUS,SEV10,Severe Illness 10+ Payment HCCs,
+TRANSPLANT_HCC_COUNT4,TRN4,Transplant Severe Illness 4 Payment HCCs,Transplant
+TRANSPLANT_HCC_COUNT4PLUS,TRN4P,Transplant Severe Illness 4+ Payment HCCs (Child),Transplant
+TRANSPLANT_HCC_COUNT5,TRN5,Transplant Severe Illness 5 Payment HCCs,Transplant
+TRANSPLANT_HCC_COUNT6,TRN6,Transplant Severe Illness 6 Payment HCCs,Transplant
+TRANSPLANT_HCC_COUNT7,TRN7,Transplant Severe Illness 7 Payment HCCs,Transplant
+TRANSPLANT_HCC_COUNT8PLUS,TRN8,Transplant Severe Illness 8+ Payment HCCs,Transplant
