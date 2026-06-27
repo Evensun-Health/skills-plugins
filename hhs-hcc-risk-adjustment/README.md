@@ -1,12 +1,12 @@
-# HHS-HCC Risk Adjustment — Claude Code Skill
+# HHS-HCC Risk Adjustment — Claude Code Plugin
 
-A [Claude Code](https://claude.ai/code) skill that gives Claude deep expertise in the **HHS-HCC commercial risk adjustment model** — the CMS model used to calculate risk scores and transfer payments for ACA Individual and Small Group plans. Covers the current V07 model (BY2021–BY2027) and the earlier V05 model (BY2018–BY2020), with bundled coefficient data for all ten benefit years.
+A [Claude Code](https://claude.ai/code) plugin that gives Claude deep expertise in the **HHS-HCC commercial risk adjustment model** — the CMS model used to calculate risk scores and transfer payments for ACA Individual and Small Group plans. Covers the current V07 model (BY2021–BY2027) and the earlier V05 model (BY2018–BY2020), with bundled coefficient data for all ten benefit years.
 
 ---
 
 ## What you can ask Claude
 
-Once the skill is installed, you can ask Claude questions like:
+Once the plugin is installed, you can ask Claude questions like:
 
 - *"What is the BY2025 Silver coefficient for HHS_HCC042?"*
 - *"Score a 45-year-old female on a Silver CSR-1 plan with HCC042 and HCC156 flagged."*
@@ -17,7 +17,7 @@ Once the skill is installed, you can ask Claude questions like:
 - *"Which ICD-10 codes map to HCC018?"*
 - *"What J-codes trigger RXC_09?"*
 
-Claude will answer using the bundled reference data, run the bundled scripts, and cite the correct CMS rules for the benefit year you specify.
+Claude answers using the bundled reference data and scripts, citing the correct CMS rules for the benefit year you specify.
 
 ---
 
@@ -37,32 +37,22 @@ The model family depends on the benefit year: **V07** covers BY2021 and forward;
 
 | Command | What it does |
 |---|---|
-| `/hhs-hcc-score` | Guided intake → runs `score_enrollee.py` → explains the output |
-| `/hhs-hcc-lookup` | Look up any coefficient by variable name, year, and metal |
-| `/hhs-hcc-transfer` | Compute T(i) or find the Platinum inflection point; looks up statewide values by state+year |
+| `/hhs-hcc-score` | Guided intake → runs `score_enrollee.py` → explains the output clinically |
+| `/hhs-hcc-lookup` | Look up any coefficient by variable name, year, and metal level |
+| `/hhs-hcc-transfer` | Compute T(i) or find the Platinum inflection point; auto-populates statewide inputs by state+year |
 
-Or just ask Claude a question directly — the skill activates automatically based on context.
-
-## Skill workflows (conversational)
-
-| What you want | Claude will use |
-|---|---|
-| Explain how part of the model works | `workflows/explain-model.md` + `references/` |
-| Score an enrollee | `workflows/calculate-score.md` → `scripts/score_enrollee.py` |
-| Look up a coefficient | `workflows/lookup-coefficient.md` → `scripts/lookup.py` |
-| Compare plan years | `workflows/compare-years.md` → `references/year-changes.md` |
-| Risk transfer calculation | `workflows/risk-transfer.md` → `scripts/risk_transfer.py` |
+Or just ask Claude a question directly — the plugin activates automatically based on context.
 
 ---
 
 ## Scripts
 
-Pure Python 3.10+, stdlib only — no dependencies to install.
+Pure Python 3.10+, stdlib only — no dependencies to install. Scripts live in `skills/hhs-hcc-risk-adjustment/scripts/`.
 
 ### Score an enrollee
 
 ```bash
-python3 scripts/score_enrollee.py \
+python3 skills/hhs-hcc-risk-adjustment/scripts/score_enrollee.py \
   --age 45 --sex F --metal S --csr 1 --year 2025 \
   --hcc HHS_HCC042 HHS_HCC156 --rxc RXC_09 --enrol-duration 12
 ```
@@ -77,9 +67,7 @@ Variable                                  ind       coef    contrib
 HHS_HCC042                                  1    10.9030    10.9030
 HHS_HCC156                                  1     7.4610     7.4610
 RXC_09                                      1     0.6330     0.6330
-RXC_09_X_HCC056                             0        ...        ...
 FAGE_LAST_45_49                             1     0.2770     0.2770
-...
 ----------------------------------------------------------------------
 RAW SCORE                                                   19.2740
 CSR factor (CSR_INDICATOR=1): 1.0000
@@ -95,39 +83,43 @@ CSR-ADJUSTED SCORE: 19.2740
 | `--metal` | `P` / `G` / `S` / `B` / `C` (or full name) |
 | `--csr` | `RA_CSR_Indicator` — CMS internal CSR code (1 = standard/no CSR; 3 = Silver state-subsidy; 4 = ZCS Platinum; etc.) |
 | `--year` | Benefit year — selects the bundled coefficient set |
-| `--hcc` | Space-separated list of flagged HCCs **after** hierarchy and group collapsing |
-| `--rxc` | Space-separated list of flagged RXCs (Adult model only) |
+| `--hcc` | Space-separated HCCs **after** hierarchy and group collapsing |
+| `--rxc` | Space-separated RXCs (Adult model only) |
 | `--enrol-duration` | Months enrolled (1–12) — triggers `HCC_ED` short-enrollment flag |
-| `--data-dir` | Override bundled data with a custom coefficient directory |
+| `--data-dir` | Override the bundled data with a custom coefficient directory |
 
 ### Look up a coefficient
 
 ```bash
 # Single metal
-python3 scripts/lookup.py --year 2025 --model Adult --variable HHS_HCC042 --metal Silver
+python3 skills/hhs-hcc-risk-adjustment/scripts/lookup.py \
+  --year 2025 --model Adult --variable HHS_HCC042 --metal Silver
 # → 10.9030
 
 # All metals
-python3 scripts/lookup.py --year 2025 --model Infant --variable EXTREMELY_IMMATURE_X_SEVERITY5
+python3 skills/hhs-hcc-risk-adjustment/scripts/lookup.py \
+  --year 2025 --model Infant --variable EXTREMELY_IMMATURE_X_SEVERITY5
 ```
 
 ### Compute a risk transfer
 
 ```bash
 # Transfer payment per billable member-month
-python3 scripts/risk_transfer.py \
+python3 skills/hhs-hcc-risk-adjustment/scripts/risk_transfer.py \
   --plrs 1.8 --idf 1.08 --gcf 1.09 --av 0.8 --arf 1.90 \
   --statewide-plrs 1.5 --statewide-idf 1.03 --statewide-gcf 1.0 \
   --statewide-av 0.686 --statewide-arf 1.541 --premium 375
 
 # Inflection point: at what PLRS does Platinum beat Gold?
-python3 scripts/risk_transfer.py --inflection \
+python3 skills/hhs-hcc-risk-adjustment/scripts/risk_transfer.py --inflection \
   --arf 1.541 --statewide-plrs 1.5 --statewide-av 0.686 --statewide-arf 1.541
 ```
 
 ---
 
 ## Bundled data
+
+All data lives under `skills/hhs-hcc-risk-adjustment/`.
 
 ### Coefficient CSVs — `data/BY<YYYY>/`
 
@@ -146,7 +138,7 @@ Three files per benefit year: `adult_model_factors.csv`, `child_model_factors.cs
 | BY2026 | `2026_NBPP_100524` | V07 |
 | BY2027 | `2027_NBPP_020926` | V07 |
 
-Where CMS published both an initial NBPP release and a later DIY revision, the DIY revision is used (it supersedes the NBPP release and incorporates corrections).
+Where CMS published both an initial NBPP release and a later DIY revision, the DIY revision is used — it supersedes the NBPP release and incorporates corrections.
 
 ### Cross-reference tables — `data/`
 
@@ -192,7 +184,7 @@ CMS publishes updated model specifications annually in the **Notice of Benefit a
 
 ---
 
-## Installing the skill
+## Installing the plugin
 
 ### Option 1 — npx (recommended)
 
