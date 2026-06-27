@@ -31,22 +31,21 @@ function copyDir(src, dest, topLevel = false) {
   }
 }
 
-function patchSettings(pluginPath) {
+function patchSettings(skillPath) {
   let settings = {};
   if (fs.existsSync(SETTINGS_PATH)) {
     try { settings = JSON.parse(fs.readFileSync(SETTINGS_PATH, 'utf8')); }
     catch { console.warn(`Warning: could not parse ${SETTINGS_PATH} — will create a new one.`); }
   }
 
-  // Support both skills[] and plugins[] arrays
-  if (!Array.isArray(settings.plugins)) settings.plugins = [];
+  if (!Array.isArray(settings.skills)) settings.skills = [];
 
-  const already = settings.plugins.some(
-    (p) => (typeof p === 'string' ? p : p?.path) === pluginPath
+  const already = settings.skills.some(
+    (s) => (typeof s === 'string' ? s : s?.path) === skillPath
   );
 
   if (!already) {
-    settings.plugins.push({ path: pluginPath });
+    settings.skills.push({ path: skillPath });
     fs.mkdirSync(CLAUDE_DIR, { recursive: true });
     fs.writeFileSync(SETTINGS_PATH, JSON.stringify(settings, null, 2) + '\n', 'utf8');
     return true;
@@ -55,22 +54,24 @@ function patchSettings(pluginPath) {
 }
 
 function main() {
-  console.log(`\nInstalling ${PLUGIN_NAME} plugin...\n`);
+  console.log(`\nInstalling ${PLUGIN_NAME}...\n`);
 
   copyDir(SOURCE_DIR, INSTALL_DIR, true);
-  console.log(`  Plugin files copied to:\n    ${INSTALL_DIR}`);
+  console.log(`  Files copied to:\n    ${INSTALL_DIR}`);
 
-  const added = patchSettings(INSTALL_DIR);
+  // Register the skill subdirectory — this is the path Claude Code loads via settings.json
+  const skillPath = path.join(INSTALL_DIR, 'skills', PLUGIN_NAME);
+  const added = patchSettings(skillPath);
   if (added) {
-    console.log(`  Added to Claude Code settings:\n    ${SETTINGS_PATH}`);
+    console.log(`  Skill registered in:\n    ${SETTINGS_PATH}`);
   } else {
-    console.log(`  Already in Claude Code settings — no change needed.`);
+    console.log(`  Already registered in Claude Code settings — no change needed.`);
   }
 
   console.log(`
-Done. Restart Claude Code (or reload the window) for the plugin to take effect.
+Done. Restart Claude Code (or reload the window) for the skill to take effect.
 
-Slash commands added:
+Slash commands available:
   /hhs-hcc-score    — score an enrollee
   /hhs-hcc-lookup   — look up a coefficient
   /hhs-hcc-transfer — compute a risk transfer
