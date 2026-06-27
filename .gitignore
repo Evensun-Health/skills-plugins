@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 *.pyo
 .claude/settings.local.json
+# stale root-level scripts/ — scripts live in skills/hhs-hcc-risk-adjustment/scripts/
+hhs-hcc-risk-adjustment/scripts/

@@ -33,7 +33,17 @@ The model family depends on the benefit year: **V07** covers BY2021 and forward;
 
 ---
 
-## Skill workflows
+## Slash commands
+
+| Command | What it does |
+|---|---|
+| `/hhs-hcc-score` | Guided intake → runs `score_enrollee.py` → explains the output |
+| `/hhs-hcc-lookup` | Look up any coefficient by variable name, year, and metal |
+| `/hhs-hcc-transfer` | Compute T(i) or find the Platinum inflection point; looks up statewide values by state+year |
+
+Or just ask Claude a question directly — the skill activates automatically based on context.
+
+## Skill workflows (conversational)
 
 | What you want | Claude will use |
 |---|---|
@@ -184,25 +194,33 @@ CMS publishes updated model specifications annually in the **Notice of Benefit a
 
 ## Installing the skill
 
-Clone the repo, then reference the skill directory from your Claude Code settings:
+### Option 1 — npx (recommended)
 
 ```bash
-git clone https://github.com/<your-org>/skills.git
+npx hhs-hcc-risk-adjustment
 ```
 
-**Project-level** (`.claude/settings.json` in your project):
+This copies the plugin to `~/.claude/plugins/hhs-hcc-risk-adjustment/` and adds it to your global `~/.claude/settings.json` automatically. Restart Claude Code afterward.
+
+Safe to re-run — it won't add a duplicate entry.
+
+### Option 2 — manual
+
+Clone the repo and add the plugin path to your Claude Code settings.
+
+**User-level** (`~/.claude/settings.json`):
 ```json
 {
-  "skills": [
+  "plugins": [
     { "path": "/path/to/skills/hhs-hcc-risk-adjustment" }
   ]
 }
 ```
 
-**User-level** (`~/.claude/settings.json`):
+**Project-level** (`.claude/settings.json` in your project):
 ```json
 {
-  "skills": [
+  "plugins": [
     { "path": "/path/to/skills/hhs-hcc-risk-adjustment" }
   ]
 }

@@ -1,0 +1,28 @@
+{
+  "name": "hhs-hcc-risk-adjustment",
+  "version": "1.0.0",
+  "description": "Claude Code plugin for HHS-HCC commercial risk adjustment (ACA BY2018–BY2027)",
+  "bin": {
+    "hhs-hcc-skill": "./bin/install.js"
+  },
+  "files": [
+    ".claude-plugin/",
+    "bin/",
+    "commands/",
+    "skills/",
+    "README.md"
+  ],
+  "keywords": [
+    "claude-code",
+    "claude-plugin",
+    "risk-adjustment",
+    "hhs-hcc",
+    "aca",
+    "cms",
+    "health-insurance"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  }
+}

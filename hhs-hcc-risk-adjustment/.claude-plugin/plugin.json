@@ -1,0 +1,11 @@
+{
+  "name": "hhs-hcc-risk-adjustment",
+  "version": "1.0.0",
+  "description": "Domain expertise and computational tools for the HHS-HCC commercial risk adjustment model (ACA Individual & Small Group, BY2018–BY2027)",
+  "author": {
+    "name": "Wesley Sanders",
+    "url": "https://evensun.com"
+  },
+  "license": "MIT",
+  "keywords": ["risk-adjustment", "hhs-hcc", "aca", "cms", "health-insurance"]
+}
