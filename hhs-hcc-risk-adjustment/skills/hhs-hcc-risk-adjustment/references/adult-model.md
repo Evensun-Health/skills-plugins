@@ -1,5 +1,5 @@
 <scope>
-Adult model rules: applies to enrollees with `AGE_LAST >= 21`. Variables and logic verified against CMS SAS source for BY2018-BY2024 and the CMS Python release for BY2025.
+Adult model rules: applies to enrollees with `AGE_LAST >= 21`. Variables and logic verified against CMS SAS source for BY2018-BY2024 and the CMS Python package for BY2026 (V0826.141.E1), including end-to-end score reconciliation against that package.
 </scope>
 
 <age_sex_variables>
@@ -15,7 +15,7 @@ The `_60_GT` bin is open-ended (60 and older). Female bins use the `F` prefix.
 </age_sex_variables>
 
 <group_flags>
-After CC hierarchies are applied, certain HCCs collapse into Group flags. The Group flag replaces the individual HCCs in payment scoring (the individuals are zeroed). PY2025 adult groups:
+After CC hierarchies are applied, certain HCCs collapse into Group flags. The Group flag replaces the individual HCCs in payment scoring (the individuals are zeroed). Adult groups (unchanged BY2025-BY2027; verified against the CMS BY2026 `adult_group_mappings.csv`):
 
 | Group | Members |
 |---|---|
@@ -64,7 +64,7 @@ Set when:
 - Enrollee has at least one HCC in the **adult severe list** (post- OR pre-grouping check), AND
 - `HCC_CNT == n` for buckets 1-9, or `HCC_CNT >= 10` for the 10PLUS bucket
 
-**Adult severe list (PY2025):**
+**Adult severe list** (verified against the CMS BY2026 `severe_list.csv`, column `adult` = 'y'):
 HHS_HCC002, 003, 004, 006, 023, 034, 041, 042, 096, 121, 122, 125, 135, 145, 156, 158, 163, 218, 223, 251, **G13, G14, G24**
 
 The "pre-grouping check" matters because some severe HCCs (HCC018, HCC183) collapse into G24 — both the pre-grouped HCC and the post-grouped flag should trigger the severe indicator.
@@ -77,7 +77,7 @@ Coefficients are typically negative for low counts and positive for high counts 
 - Enrollee has at least one HCC in the **adult transplant list**, AND
 - `HCC_CNT == n` for 4-7, or `HCC_CNT >= 8` for 8PLUS
 
-**Adult transplant list (PY2025):**
+**Adult transplant list** (verified against the CMS BY2026 `transplant_list.csv`, column `adult` = 'y'):
 HHS_HCC034, 041, 158, 251, **G14, G24**
 
 Like severe, both pre- and post-grouping flags should be checked.
@@ -139,6 +139,21 @@ RXC_09_X_HCC056_057_AND_048_041 = 1
 This is the only interaction with a triple-AND structure. Easy to miss when implementing from scratch.
 </rxc_hcc_interactions>
 
+<acf_variables>
+**New in BY2026: Additional Cost Factors (ACF).** A pharmacy/HCPCS-driven payment variable that is *not* an RXC and *not* an HCC. Only one exists so far, for HIV pre-exposure prophylaxis:
+
+| Variable | Model | Fires when |
+|---|---|---|
+| `ACF_PrEP` | Adult | A PrEP NDC or HCPCS code, `AGE_LAST > 20`, **and** `RXC_01 = 0` |
+| `ACF_PrEP_Child` | Child | A PrEP NDC or HCPCS code, `11 < AGE_LAST < 21`, **and** `HHS_HCC001 = 0` |
+
+The exclusion is the point: PrEP is preventive medication for people *without* HIV. An enrollee on PrEP who also has HIV (RXC_01 for adults, HCC001 for children) is captured by the HIV variable instead, so the ACF is suppressed to avoid double-counting. The DIY tables name both rows `ACF_01`; the CMS package names them separately.
+
+BY2026 Silver coefficients: `ACF_PrEP` 3.609, `ACF_PrEP_Child` 2.016.
+
+Mappings live in `acf_NDC_mappings.csv` and `acf_HCPCS_mappings.csv` in the CMS package (Tables 10c and 10d), which carry the age, RXC, and HCC exclusion criteria per code. Pass `--acf` to `scripts/score_enrollee.py` when the enrollee qualifies; the script does not derive it from drug codes.
+</acf_variables>
+
 <scoring_formula>
 For each metal level (Platinum, Gold, Silver, Bronze, Catastrophic):
 ```
@@ -160,7 +175,7 @@ See `references/csr-adjustments.md` for the CSR factor table.
 </scoring_formula>
 
 <canonical_data>
-PY2025 coefficients: `/Users/wesley/Documents/CMS HHS-HCC Model/CMS Model/software/HHS_HCC/data/input/internal/adult_model_factors.csv`
+Coefficients: `data/BY<YYYY>/adult_model_factors.csv`
 
 Group mappings: `adult_group_mappings.csv` in the same directory.
 Severe list: `severe_list.csv` (column `adult` = 'y').

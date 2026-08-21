@@ -13,7 +13,7 @@ The model is published annually by CMS via the Notice of Benefit and Payment Par
 
 Within V07, every benefit year gets a release tag (e.g., `V0721.141.A3` = released 07/2021, model 141, A-series version 3). The letter sequence maps roughly to benefit year (A=2021, B=2022, C=2023, D=2024, E=2025).
 
-This skill focuses on V07. V05 details exist in the SAS source archive under `/Users/wesley/Documents/CMS HHS-HCC Model/SAS/` if needed.
+This skill focuses on V07. V05 details are in the CMS SAS source archive for BY2018-BY2020 if needed.
 </model_versions>
 
 <sub_models>

@@ -29,7 +29,7 @@ HCC009 = 1 → HCC010 = 0, HCC011 = 0, HCC012 = 0, HCC013 = 0
 ...
 ```
 
-The hierarchy is published in CMS Table 4 ("V07 HHS-HCC Hierarchies") and codified in the CMS data file `HCC_hierarchy.csv` (`/Users/wesley/Documents/CMS HHS-HCC Model/CMS Model/software/HHS_HCC/data/input/internal/HCC_hierarchy.csv`).
+The hierarchy is published in CMS Table 4 ("V07 HHS-HCC Hierarchies") and codified in the CMS data file `HCC_hierarchy.csv` (`software/HHS_HCC/data/input/internal/HCC_hierarchy.csv` in the CMS software package).
 
 The output of this stage is HCCs (with the `HHS_HCC` prefix in the CMS spec).
 </cc_to_hcc_hierarchy>

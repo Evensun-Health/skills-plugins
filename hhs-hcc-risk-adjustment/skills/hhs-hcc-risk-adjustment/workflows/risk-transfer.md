@@ -40,7 +40,7 @@ For metal-level inflection point analysis:
 ## Step 4: Run the calculator
 
 ```bash
-python3 /Users/wesley/.claude/skills/hhs-hcc-risk-adjustment/scripts/risk_transfer.py \
+python3 scripts/risk_transfer.py \
   --plrs 1.8 --idf 1.08 --gcf 1.09 \
   --av 0.8 --arf 1.90 \
   --statewide-plrs 1.5 --statewide-idf 1.03 --statewide-gcf 1.0 \
@@ -52,7 +52,7 @@ Output: T(i) per member-month, with the left-side and right-side fractions broke
 
 For the inflection point:
 ```bash
-python3 /Users/wesley/.claude/skills/hhs-hcc-risk-adjustment/scripts/risk_transfer.py \
+python3 scripts/risk_transfer.py \
   --inflection \
   --arf 1.541 --statewide-plrs 1.5 --statewide-av 0.686 --statewide-arf 1.541
 ```

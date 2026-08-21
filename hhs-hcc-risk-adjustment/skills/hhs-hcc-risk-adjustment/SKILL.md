@@ -34,7 +34,18 @@ The published coefficients change every year. The **logic** also changes occasio
 
 ### Principle 5: CMS Python ≠ CMS DIY Tables ≠ CMS SAS
 
-CMS publishes the model in three forms — SAS source (canonical, available going back to BY2014), DIY tables (Excel reference workbook, intended for non-SAS implementers), and starting BY2025 a Python package. **The SAS source is the authoritative spec when sources disagree.** A known instance: the BY2025 Python release omits the `AGE0_MALE → AGE1_MALE` reassignment that is present in every SAS release and both the BY2024 and BY2025 DIY tables.
+CMS publishes the model in three forms — SAS source (available back to BY2014), DIY tables (Excel reference workbook for non-SAS implementers), and starting BY2025 a Python package. They agree on the model but **not on variable naming**, which is the single most common source of silent scoring errors:
+
+| Concept | CMS package | DIY tables |
+|---|---|---|
+| Adult severity counter | `SEVERE_HCC_COUNT4` | `SEVERE_4_HCC` |
+| Transplant counter | `TRANSPLANT_HCC_COUNT4` | `TRANSPLANT_4_HCC` |
+| Enrollment duration | `HCC_ED3` | `ED_3` |
+| PrEP cost factor | `ACF_PrEP` / `ACF_PrEP_Child` | `ACF_01` |
+
+The DIY tables also expand collapsed tiers into one row per count, so the child model's `SEVERE_6_HCC` and `SEVERE_7_HCC` both carry the single `SEVERE_HCC_COUNT6_7` coefficient, and group-flag rows repeat once per member HCC. Always resolve a variable name against the table you actually loaded — `scripts/load_coefficients.py:resolve()` does this. A name that fails to match must be surfaced, never treated as a zero: a dropped severity or interaction term shifts a score by several points and looks entirely plausible.
+
+Where logic genuinely disagrees, prefer the SAS source. Verified against the BY2026 Python package (V0826.141.E1), the two implement the same rules, including the `AGE0_MALE → AGE1_MALE` infant reassignment.
 
 ### Principle 6: Diagnoses Only Count from Qualifying Claims
 

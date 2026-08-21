@@ -35,15 +35,15 @@ Ask the user which years to compare. Common comparisons:
 ## Step 4: For deeper diff — go to the SAS source
 
 For changes not captured in the reference:
-- BY2018-BY2024 SAS source: `/Users/wesley/Documents/CMS HHS-HCC Model/SAS/`
+- BY2018-BY2024 SAS source (filenames within the CMS SAS archive):
 - Each year's `CY##M07C.SAS` (V07) or `V0##F#M.SAS` (V05) is the canonical implementation
 - Diff structurally relevant macros across years (e.g., `IHCC_SEVERITY_LIST`, severity assignment block, group flag block)
 
 Useful one-liners:
 ```bash
 # Compare severity assignment between two years
-diff "/Users/wesley/Documents/CMS HHS-HCC Model/SAS/hhs-hcc-software-v0723141c4/CY23M07C.SAS" \
-     "/Users/wesley/Documents/CMS HHS-HCC Model/SAS/hhs-hcc-software-v0724141d3/CY24M07C.SAS"
+diff "<sas-archive>/hhs-hcc-software-v0723141c4/CY23M07C.SAS" \
+     "<sas-archive>/hhs-hcc-software-v0724141d3/CY24M07C.SAS"
 ```
 
 ## Step 5: For coefficient comparison

@@ -1,5 +1,5 @@
 <scope>
-Child model rules: applies to enrollees with `AGE_LAST in [2, 20]`. Verified against CMS SAS source for BY2018-BY2024 and the CMS Python release for BY2025.
+Child model rules: applies to enrollees with `AGE_LAST in [2, 20]`. Verified against CMS SAS source for BY2018-BY2024 and the CMS Python package for BY2026 (V0826.141.E1).
 </scope>
 
 <age_sex_variables>
@@ -12,7 +12,7 @@ Exactly one set per enrollee.
 </age_sex_variables>
 
 <group_flags>
-PY2025 child group flags (note: distinct from adult — different Group set):
+Child group flags (unchanged BY2025-BY2027; verified against the CMS BY2026 `child_group_mappings.csv`). Note these are distinct from adult:
 
 | Group | Members |
 |---|---|
@@ -58,7 +58,7 @@ SEVERE_HCC_COUNT1, COUNT2, COUNT3, COUNT4, COUNT5, COUNT6_7, COUNT8PLUS
 
 The `COUNT6_7` bucket fires when `HCC_CNT in {6, 7}`. The `COUNT8PLUS` fires when `HCC_CNT >= 8`. This collapsing reflects smaller sample sizes in pediatric populations.
 
-**Child severe list (PY2025):**
+**Child severe list** (verified against the CMS BY2026 `severe_list.csv`, column `child` = 'y'):
 HHS_HCC002, 003, 004, 006, **018**, 023, 034, 041, 042, 096, 121, 122, 125, 135, 145, 156, 158, 163, **183**, 218, 223, 251, **G13, G14**
 
 Differences from adult severe list:
@@ -73,7 +73,7 @@ TRANSPLANT_HCC_COUNT4PLUS
 ```
 Fires when at least one transplant HCC AND `HCC_CNT >= 4`.
 
-**Child transplant list (PY2025):**
+**Child transplant list** (verified against the CMS BY2026 `transplant_list.csv`, column `child` = 'y'):
 HHS_HCC**018**, 034, 041, 158, **183**, 251, G14
 
 Differences from adult: adds HCC018, HCC183 (same reason as severe); excludes G24.
@@ -97,7 +97,7 @@ CSR_ADJUSTED_SCORE_CHILD = SCORE_CHILD × RA_Factor(CSR_INDICATOR)
 </scoring_formula>
 
 <canonical_data>
-PY2025 coefficients: `/Users/wesley/Documents/CMS HHS-HCC Model/CMS Model/software/HHS_HCC/data/input/internal/child_model_factors.csv`
+Coefficients: `data/BY<YYYY>/child_model_factors.csv`
 
 Group mappings: `child_group_mappings.csv`.
 Severe list: `severe_list.csv` (column `child` = 'y').
