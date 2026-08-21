@@ -122,7 +122,7 @@ All domain knowledge in `references/`:
 **Bundled reference data in `data/` (loaded automatically by scripts or grepped directly):**
 - `data/hcc_labels.csv` — Human-readable label and clinical category for every HCC, group flag, RXC, and interaction variable (210 rows). Columns: `column_name,hcc_number,label,clinical_category`. Use to answer "what does HCC042 mean?" or "which HCCs are in the Oncology category?" — grep by column_name or clinical_category.
 - `data/csr_adjustment_factors.csv` — CSR adjustment factors by CSR_Code and model year (BY2020–BY2027, 96 rows). Columns: `CSR_Code,CSR_Desc,model_year,adj_factor`. Loaded automatically by `score_enrollee.py`; also useful for "what is the CSR factor for Silver 94% in BY2025?"
-- `data/statewide_ra_factors.csv` — Statewide weighted-average PLRS, IDF, AV, ARF, average premium, and member months by state, market, and year (BY2018–BY2024, ~1,009 rows). Columns: `State,RA_Adj_Avg_Pre,Avg_pre,PLRS,ARF,AV,IDF,MM,Market,Year`. Use to look up the statewide inputs needed for the risk transfer formula — grep by State and Year, then filter by Market (1=Individual, 2=Small Group).
+- `data/statewide_ra_factors.csv` — Statewide weighted-average PLRS, IDF, AV, ARF, average premium, and member months by state, market, and year (BY2018–BY2025, ~1,150 rows). Columns: `State,RA_Adj_Avg_Pre,Avg_pre,PLRS,ARF,AV,IDF,MM,Market,Year`. Use to look up the statewide inputs needed for the risk transfer formula — grep by State and Year, then filter by Market (1=Individual, 2=Small Group).
 - `data/BY<YYYY>/` — Coefficient CSVs (adult/child/infant model factors) for BY2018–BY2027. Loaded automatically by scripts via `--year`.
 </reference_index>
 
