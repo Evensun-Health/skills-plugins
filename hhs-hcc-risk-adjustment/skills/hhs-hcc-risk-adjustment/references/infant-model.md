@@ -1,5 +1,5 @@
 <scope>
-Infant model rules: applies to enrollees with `AGE_LAST in [0, 1]`. The infant model is structurally distinct from Adult/Child — there are no HCC group flags, no severe/transplant counters, and no RXC variables. Payment is driven by a maturity × severity interaction grid plus optional age-sex add-ons. Verified against CMS SAS source for BY2018-BY2024 and the BY2025 DIY tables / Python release.
+Infant model rules: applies to enrollees with `AGE_LAST in [0, 1]`. The infant model is structurally distinct from Adult/Child — there are no HCC group flags, no severe/transplant counters, and no RXC variables. Payment is driven by a maturity × severity interaction grid plus optional age-sex add-ons. Verified against CMS SAS source for BY2018-BY2024 and the CMS Python package for BY2026 (V0826.141.E1), including end-to-end score reconciliation against that package.
 </scope>
 
 <demographic_addon>
@@ -29,7 +29,7 @@ Females and the maturity bucket carry the female-baseline implicitly through the
 <severity_categories>
 5 severity flags, highest wins:
 
-| Flag | Triggering HCCs (PY2025) |
+| Flag | Triggering HCCs (BY2025-BY2027; verified against the CMS BY2026 `infant_severity_mappings.csv`) |
 |---|---|
 | `IHCC_SEVERITY5` | HCC008, 018, 034, 041, 042, 125, 128, 129, 130, 137, 158, 183, 184, 251 |
 | `IHCC_SEVERITY4` | HCC002, 009, 026, 030, 035_1, 035_2, **064**, 067, 068, 073, 106, 107, 111, 112, 115, 122, 126, 127, 131, 135, 138, 145, 146, 154, 156, 163, 187, 253 |
@@ -59,11 +59,11 @@ AGE1_X_SEVERITY5                ...  AGE1_X_SEVERITY1
 
 Set as the AND of the corresponding maturity flag and severity flag. Because both axes are mutually exclusive after their hierarchies, exactly **one** of these 25 fires per infant.
 
-PY2025 coefficients (Platinum) range from `0.581` (AGE1_X_SEVERITY1) to `204.04` (EXTREMELY_IMMATURE_X_SEVERITY5). The variation is huge — getting an infant's bucket wrong by even one tier can change the score by a factor of 2-5.
+BY2026 coefficients (Platinum) range from `0.581` (AGE1_X_SEVERITY1) to `204.04` (EXTREMELY_IMMATURE_X_SEVERITY5). The variation is huge — getting an infant's bucket wrong by even one tier can change the score by a factor of 2-5.
 </maturity_x_severity_grid>
 
 <age0_male_swap>
-**Critical rule** (canonical per CMS SAS source for BY2018-BY2024 and DIY tables for BY2024-BY2025; **omitted from CMS Python BY2025 — Python is wrong here**):
+**Critical rule** — canonical in the CMS SAS source (BY2018-BY2024), the DIY tables, and the CMS Python package:
 
 ```
 if AGE_LAST = 0 and IHCC_AGE1 = 1 and AGE0_MALE = 1 then do;
@@ -72,9 +72,11 @@ if AGE_LAST = 0 and IHCC_AGE1 = 1 and AGE0_MALE = 1 then do;
 end;
 ```
 
-This reassigns the demographic add-on for 0-year-old males whose maturity bucket fell through to `IHCC_AGE1` (i.e., they have no HCC242-249 birth code). It moves them from the larger `AGE0_MALE` coefficient (~0.604 Platinum) to the smaller `AGE1_MALE` (~0.09 Platinum). Without this swap, scores are inflated by ~0.5 for these specific infants.
+This reassigns the demographic add-on for 0-year-old males whose maturity bucket fell through to `IHCC_AGE1` (i.e., they have no HCC242-249 birth code). It moves them from the larger `AGE0_MALE` coefficient (BY2026 Platinum 0.606) to the smaller `AGE1_MALE` (0.074). Without the swap, scores for these infants are inflated by roughly 0.5.
 
-The CMS Python release at `software/HHS_HCC/utils.py` for BY2025 does not implement this swap. Treat the SAS source / DIY tables as canonical.
+The CMS Python package implements it in `create_infant_model_vars` (`software/HHS_HCC/utils.py`).
+
+**Auditing trap in CMS Python output.** The swap is applied to the infant model frame that feeds scoring, but the `AGE0_MALE` / `AGE1_MALE` columns written to the output CSV come from the *pre-swap* demographic table. So a swapped infant shows `AGE0_MALE=1, AGE1_MALE=0` in the output while the score behind it used the `AGE1_MALE` coefficient. Verified on the BY2026 package: a 0-year-old male with no maturity HCC and no severity HCC scores `SCORE_INFANT_SILVER = 0.475`, which is `AGE1_X_SEVERITY1` (0.431) + `AGE1_MALE` (0.044) — not the 0.541 that the reported `AGE0_MALE=1` implies. Do not reconcile scores against those two intermediate columns.
 </age0_male_swap>
 
 <no_hcc_grouping>
@@ -93,8 +95,8 @@ Final score and CSR adjustment follow the same shape as Adult/Child.
 </scoring_formula>
 
 <canonical_data>
-PY2025 coefficients: `/Users/wesley/Documents/CMS HHS-HCC Model/CMS Model/software/HHS_HCC/data/input/internal/infant_model_factors.csv`
+Coefficients: `data/BY<YYYY>/infant_model_factors.csv`
 
 Maturity mapping: `infant_maturity_mappings.csv`.
-Severity mapping: `infant_severity_mappings.csv` (note: this is the BY2025 mapping; for prior years use the CMS SAS source under `/Users/wesley/Documents/CMS HHS-HCC Model/SAS/`).
+Severity mapping: `infant_severity_mappings.csv` (note: this is the BY2025 mapping; for prior years use that year's CMS SAS source).
 </canonical_data>

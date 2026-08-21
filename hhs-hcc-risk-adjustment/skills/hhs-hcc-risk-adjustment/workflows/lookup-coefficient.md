@@ -25,13 +25,13 @@ The user may say:
 ## Step 3: Run the lookup
 
 ```bash
-python3 /Users/wesley/.claude/skills/hhs-hcc-risk-adjustment/scripts/lookup.py \
+python3 scripts/lookup.py \
   --year 2025 --model Adult --variable HHS_HCC042 --metal Silver
 ```
 
 Or to get all metals at once, omit `--metal`:
 ```bash
-python3 /Users/wesley/.claude/skills/hhs-hcc-risk-adjustment/scripts/lookup.py \
+python3 scripts/lookup.py \
   --year 2025 --model Adult --variable HHS_HCC042
 ```
 

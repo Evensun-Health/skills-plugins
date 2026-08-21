@@ -27,7 +27,7 @@ These category labels are illustrative for understanding scope; the canonical ma
 </rxc_variables>
 
 <rxc_hierarchy>
-Only one rule (in PY2025): `RXC_06 = 1 → RXC_07 = 0`.
+Only one rule (unchanged through BY2026): `RXC_06 = 1 → RXC_07 = 0`.
 
 This reflects clinical hierarchy where RXC_06 represents the more potent/primary transplant regimen and RXC_07 the secondary or alternative. An enrollee on both gets credit only for RXC_06.
 
@@ -72,7 +72,7 @@ RXC_09_X_HCC056_057_AND_048_041 = 1
 
 This represents diabetic complications combined with severe heart/vascular disease while on diabetes specialty agents. Has a positive coefficient (additional risk on top of the individual RXC_09 × HCC interactions).
 
-This interaction is easy to miss because the data file `RXC_interactions.csv` represents it as a row that's actually three rows in disguise (or hand-coded in the SAS/Python source). In CMS Python, it's hardcoded in `software/HHS_HCC/utils.py`:
+This interaction is easy to miss because it has **no row** in `RXC_interactions.csv` — that file's schema is one RXC plus a flat list of HCCs, which cannot express a conjunction of two HCC groups. It is hardcoded instead. In CMS Python, in `software/HHS_HCC/utils.py`:
 
 ```python
 adult_model_df['RXC_09_X_HCC056_057_AND_048_041'] = (
@@ -82,21 +82,40 @@ adult_model_df['RXC_09_X_HCC056_057_AND_048_041'] = (
 ).astype(int)
 ```
 
-The user's SQL implementation hand-codes it the same way at line ~1712 of the DIY Model Script.
+The SQL DIY script hand-codes it the same way, alongside the other RXC interaction updates.
 </rxc_09_triple_interaction>
 
 <pre_post_grouping>
-Whether RXC × HCC interactions check pre-grouping or post-grouping HCCs varies by implementation:
-- CMS Python: checks **either** pre-grouping or post-grouping HCC values
-- User's SQL: checks post-grouping only
+**The interactions must be evaluated against pre-grouping HCCs.** Several HCCs in the interaction lists are group members, so a post-grouping-only check silently loses the interaction:
 
-In practice, none of the HCCs that appear in RXC interaction lists are members of any group (e.g., HCC001, HCC034 family, HCC142, HCC183/184/187/188, HCC041/048, HCC018-021, HCC056/057, HCC118, HCC158/159, HCC037_1). So the distinction never bites.
+| Interaction HCC | Absorbed into | Model |
+|---|---|---|
+| HCC019, HCC020, HCC021 | G01 | Adult and Child |
+| HCC018, HCC183 | G24 | Adult (BY2024+) |
+| HCC187, HCC188 | G16 | Adult and Child |
+
+This affects `RXC_04_X_HCC184_183_187_188`, `RXC_06_X_HCC018_019_020_021`, and `RXC_07_X_HCC018_019_020_021`.
+
+How each implementation handles it:
+- **CMS Python** tests both the pre-grouping and post-grouping frames (`has_any_hcc(adult_model_df, ...) | has_any_hcc(adult_model_df_pre_grouping, ...)` in `create_adult_model_vars`).
+- **The SQL DIY script** applies the RXC interaction updates *before* the group-collapsing updates, so it reads pre-grouping values and gets the same answer.
+- **`scripts/score_enrollee.py`** takes post-grouping input, so it expands each group flag back to its member HCCs (`expand_groups`) before testing membership.
+
+Worked example, verified against the CMS BY2026 software: an adult with RXC_06 and only HCC019 collapses to `G01=1, HCC019=0`. CMS still fires `RXC_06_X_HCC018_019_020_021`. A post-grouping-only check drops it and understates the BY2026 Silver score by 0.499.
 </pre_post_grouping>
 
 <canonical_data>
-- RXC interactions: `/Users/wesley/Documents/CMS HHS-HCC Model/CMS Model/software/HHS_HCC/data/input/internal/RXC_interactions.csv`
-- RXC hierarchy: `RXC_hierarchy.csv`
 - NDC → RXC mapping: `references/ndc-rxc.csv` (local, 15,134 rows with year ranges)
 - HCPCS → RXC mapping: `references/hcpcs-rxc.csv` (local, 86 rows)
-- Coefficients: `adult_model_factors.csv` (look for rows starting with `RXC_*`)
+- Coefficients: `data/BY<YYYY>/adult_model_factors.csv` (rows starting with `RXC_`)
+
+In the CMS software package, the interaction definitions live in
+`software/HHS_HCC/data/input/internal/RXC_interactions.csv` and the hierarchy in
+`RXC_hierarchy.csv` alongside it.
+
+**Naming across years:** the bundled coefficient tables spell the interaction rows
+`RXC_01_X_HCC001` in some years and `RXC_01_x_HCC001` in others, and the CMS
+package differs from the DIY tables on the severity and enrollment-duration rows.
+`scripts/load_coefficients.py:resolve()` reconciles the spellings — look variables
+up through it rather than indexing the dict directly.
 </canonical_data>
