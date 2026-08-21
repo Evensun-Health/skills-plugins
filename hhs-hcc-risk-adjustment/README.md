@@ -148,7 +148,7 @@ Where CMS published both an initial NBPP release and a later DIY revision, the D
 |------|----------|------|
 | `hcc_labels.csv` | Human-readable label and clinical category for every HCC, group flag, RXC, and interaction variable | 210 |
 | `csr_adjustment_factors.csv` | CSR adjustment factors by CSR_Code and model year (BY2020–BY2027) | 96 |
-| `statewide_ra_factors.csv` | Statewide PLRS, IDF, AV, ARF, avg premium, and member months by state, market, and year (BY2018–BY2024) | 1,009 |
+| `statewide_ra_factors.csv` | Statewide PLRS, IDF, AV, ARF, avg premium, and member months by state, market, and year (BY2018–BY2025) | 1,150 |
 
 ### Code-mapping tables — `references/`
 
