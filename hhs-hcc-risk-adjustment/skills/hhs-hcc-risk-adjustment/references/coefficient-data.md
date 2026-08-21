@@ -110,7 +110,7 @@ State of the bundled `data/BY<YYYY>/` tables, as verified against the CMS BY2026
 | BY2020 | V05. Rebuilt from `CY2020 DIY tables 04.13.2021.xlsx` — see below. |
 | BY2021-BY2025 | Match `dbo.RiskScoreFactors` exactly |
 | BY2026 | Regenerated from the CMS V0826.141.E1 package; matches it exactly |
-| BY2027 | Matches `dbo.RiskScoreFactors` (`2027_NBPP_020926`) exactly. Proposed-rule coefficients — draft. |
+| BY2027 | **Verified against the final NBPP** (CMS-9883-F, Tables 2/3/5). Also matches `dbo.RiskScoreFactors` (`2027_NBPP_020926`) exactly. |
 
 Two vintages had to be repaired:
 

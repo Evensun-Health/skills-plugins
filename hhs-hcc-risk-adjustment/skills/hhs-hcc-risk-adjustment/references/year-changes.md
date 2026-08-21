@@ -118,7 +118,18 @@ Release tag V0826.141.E1. Model version string in the package is `V0825.141.E1` 
 </by2026>
 
 <by2027>
-Coefficients published with the proposed NBPP (tag `2027_NBPP_020926`); treat as draft until the final notice. No known logic changes versus BY2026.
+**CMS finalized the 2027 coefficients unchanged from the proposed rule.** Verified value-by-value against the final NBPP (CMS-9883-F, Table 2 Adult / Table 3 Child / Table 5 Infant): the distinct set of coefficient tuples is identical in all three sub-models — 165 adult, 114 child, 24 infant.
+
+No logic changes versus BY2026, and **no change to the CSR adjustment factor schedule** — the final rule addresses only the Massachusetts and Arkansas state-specific variants (both stay at 1.12) and restates the rationale for the AI/AN `-02` / `-03` factors. The BY2025+ schedule carries forward.
+
+The `dbo.RiskScoreFactors` tag is still `2027_NBPP_020926`, which reads as proposed-rule but now holds confirmed-final values. Renaming it would break the `@model_year` mapping and any stored scores for no benefit, so the tag stays and this note records why.
+
+**Reading the NBPP tables against our coefficient files.** Row counts differ from the bundled CSVs even though the values are identical, because the three sources use three layouts:
+- The **NBPP** lists every HCC individually, repeating a group's value on each member row, and collapses the severity/transplant tiers into single "N or more" rows.
+- The **bundled CSVs / DIY tables** carry one row per group *member* for group flags, and expand the collapsed tiers to one row per count.
+- **`dbo.RiskScoreFactors`** stores each group flag once.
+
+So BY2027 adult is 194 rows in the NBPP, 194 in the bundled CSV and 172 in SQL, all encoding the same 165 distinct coefficient tuples. Compare distinct value sets, not row counts.
 </by2027>
 
 <long_standing_canonical_rules_easy_to_miss>
