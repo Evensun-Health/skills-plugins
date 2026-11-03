@@ -179,6 +179,33 @@ def _candidates(variable: str):
     if m:
         yield f"ED_{m.group(1)}"
 
+    # The reverse direction: DIY-workbook spellings resolved to the CMS-package
+    # column that carries them (bucketed counters collapse onto 10PLUS / 8PLUS /
+    # 6_7 / 4PLUS, whichever the table actually has).
+    m = re.fullmatch(r"SEVERE_(\d+)_HCC", variable)
+    if m:
+        n = int(m.group(1))
+        yield f"SEVERE_HCC_COUNT{n}"
+        if n >= 10:
+            yield "SEVERE_HCC_COUNT10PLUS"
+        if n >= 8:
+            yield "SEVERE_HCC_COUNT8PLUS"
+        if n in (6, 7):
+            yield "SEVERE_HCC_COUNT6_7"
+
+    m = re.fullmatch(r"TRANSPLANT_(\d+)_HCC", variable)
+    if m:
+        n = int(m.group(1))
+        yield f"TRANSPLANT_HCC_COUNT{n}"
+        if n >= 8:
+            yield "TRANSPLANT_HCC_COUNT8PLUS"
+        if n >= 4:
+            yield "TRANSPLANT_HCC_COUNT4PLUS"
+
+    m = re.fullmatch(r"ED_(\d+)", variable)
+    if m:
+        yield f"HCC_ED{m.group(1)}"
+
     # ACF (Additional Cost Factor), new in BY2026. The CMS package names the
     # adult and child rows separately; the DIY workbook calls both ACF_01.
     if variable in ("ACF_PrEP", "ACF_PrEP_Child"):

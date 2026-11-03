@@ -155,8 +155,8 @@ Where CMS published both an initial NBPP release and a later DIY revision, the D
 | File | Contents | Rows |
 |------|----------|------|
 | `dx-mapping.csv` | Full ICD-10 → CC crosswalk with age/sex edits and effective date gating | 11,568 |
-| `hcpcs-rxc.csv` | HCPCS J-code → RXC mapping | 86 |
-| `ndc-rxc.csv` | NDC → RXC pharmacy mapping with start/end year | 15,134 |
+| `hcpcs-rxc.csv` | HCPCS J-code → RXC mapping | 82 |
+| `ndc-rxc.csv` | NDC → RXC pharmacy mapping with start/end year | 15,403 |
 | `service-code-reference.csv` | CPT/HCPCS qualifying-service-code list | 21,109 |
 
 ### Reference documents — `references/`

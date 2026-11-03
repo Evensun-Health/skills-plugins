@@ -115,8 +115,8 @@ All domain knowledge in `references/`:
 
 **Local code-mapping CSVs (use Grep to look up specific codes):**
 - `dx-mapping.csv` — Full ICD-10 → CC crosswalk (11,568 rows). Columns: `DGNS_CD,CC_CD,ACC_CD,DGNS_CD_EFF_STRT_DT,DGNS_CD_EFF_END_DT,MIN_AGE_DGNS_INCLUDE,MAX_AGE_DGNS_EXCLUDE,CC_AGE_SPLIT_MIN_AGE_INC,CC_AGE_SPLIT_MAX_AGE_EXC,CC_SEX_SPLIT`. Use to answer "what CC does diagnosis X map to?" or "which diagnoses map to HCC Y?" (grep for the CC number in CC_CD column). Includes date-gating and age/sex edit columns.
-- `hcpcs-rxc.csv` — HCPCS J-code → RXC mapping (86 rows). Columns: `HCPCS_CODE,RXC`. Use to answer "does this J-code trigger an RXC?" or "which J-codes map to RXC_04?"
-- `ndc-rxc.csv` — NDC → RXC pharmacy mapping (15,134 rows). Columns: `NDC_CODE,RXC,start_year,end_year`. Use to answer "does this NDC trigger an RXC?" or "which NDCs map to RXC_05 in BY2025?" (filter by start_year/end_year).
+- `hcpcs-rxc.csv` — HCPCS J-code → RXC mapping (82 rows). Columns: `HCPCS_CODE,RXC`. Use to answer "does this J-code trigger an RXC?" or "which J-codes map to RXC_04?"
+- `ndc-rxc.csv` — NDC → RXC pharmacy mapping (15,403 rows). Columns: `NDC_CODE,RXC,start_year,end_year`. Use to answer "does this NDC trigger an RXC?" or "which NDCs map to RXC_05 in BY2025?" (filter by start_year/end_year).
 - `service-code-reference.csv` — CPT/HCPCS qualifying-service-code list (21,109 rows). Columns: `SRVC_CD,SRVC_TYPE_CD,SRVC_CD_EFCTV_STRT_DT,SRVC_CD_EFCTV_END_DT,CPT_HCPCSELGBL_RISKADJSTMT_IND`. Use to answer "does CPT code X qualify a claim for risk adjustment?" — look for `CPT_HCPCSELGBL_RISKADJSTMT_IND=Y` with the service date in the effective range. SRVC_TYPE_CD distinguishes CPT (01) from HCPCS (02).
 
 **Bundled reference data in `data/` (loaded automatically by scripts or grepped directly):**
