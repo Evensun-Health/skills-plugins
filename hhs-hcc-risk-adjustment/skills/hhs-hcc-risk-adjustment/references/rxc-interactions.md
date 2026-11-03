@@ -21,8 +21,8 @@ RXC variables and RXC × HCC interactions. **Adult model only** — Child and In
 These category labels are illustrative for understanding scope; the canonical mappings are available locally:
 
 **Source data (local CSVs — use Grep to look up specific codes):**
-- NDC codes from pharmacy claims → `references/ndc-rxc.csv` (15,134 rows: `NDC_CODE,RXC,start_year,end_year`). Filter by `start_year`/`end_year` to match the benefit year.
-- HCPCS codes from medical claims → `references/hcpcs-rxc.csv` (86 rows: `HCPCS_CODE,RXC`). Clinician-administered drugs (J-codes, Q-codes).
+- NDC codes from pharmacy claims → `references/ndc-rxc.csv` (15,403 rows: `NDC_CODE,RXC,start_year,end_year`). Filter by `start_year`/`end_year` to match the benefit year.
+- HCPCS codes from medical claims → `references/hcpcs-rxc.csv` (82 rows: `HCPCS_CODE,RXC`). Clinician-administered drugs (J-codes, Q-codes).
 - Effective on a service date and paid through the CMS-specified deadline
 </rxc_variables>
 
@@ -105,8 +105,8 @@ Worked example, verified against the CMS BY2026 software: an adult with RXC_06 a
 </pre_post_grouping>
 
 <canonical_data>
-- NDC → RXC mapping: `references/ndc-rxc.csv` (local, 15,134 rows with year ranges)
-- HCPCS → RXC mapping: `references/hcpcs-rxc.csv` (local, 86 rows)
+- NDC → RXC mapping: `references/ndc-rxc.csv` (local, 15,403 rows with year ranges)
+- HCPCS → RXC mapping: `references/hcpcs-rxc.csv` (local, 82 rows)
 - Coefficients: `data/BY<YYYY>/adult_model_factors.csv` (rows starting with `RXC_`)
 
 In the CMS software package, the interaction definitions live in
